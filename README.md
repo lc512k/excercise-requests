@@ -59,9 +59,9 @@ The server is contained in `remoteServer.js`. This file contains all the API end
 
 ###From the server
 - `/with-cors-enabled`
-	- SUCCESS
+	- `fetch`: SUCCESS
 - `/with-cors-disabled`
-	- SUCCESS
+	- `fetch`: SUCCESS
 - `/with-cors-disabled/?callback=?`
-	- FAILURE (JSONP makes sense only for the client)
+	- `fetch`: FAILURE (JSONP makes sense only for the client)
 
