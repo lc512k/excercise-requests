@@ -20,6 +20,8 @@ This will run two servers: Your site will be running on port `8888` and the remo
 ## Usage
 You will see your site on http://localhost:8888
 
+![alt tag](https://cloud.githubusercontent.com/assets/3425322/23827078/4e016d4c-06a3-11e7-885b-d48350e80c86.png)
+
 You will see options to make API calls "from the client" (from your clientside JS inside `index.html`) and "from the server" (from `localServer.js`). The calls made from the client will fail when cors is not allowed on the server.
 
 All endpoints return JSON. You can call the different endpoints in three ways:
