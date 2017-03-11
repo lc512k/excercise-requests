@@ -1,0 +1,23 @@
+{
+  "name": "excercise-requests",
+  "version": "1.0.0",
+  "description": "request all the things in all the ways",
+  "main": "localServer.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/lc512k/excercise-requests.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/lc512k/excercise-requests/issues"
+  },
+  "homepage": "https://github.com/lc512k/excercise-requests#readme",
+  "dependencies": {
+    "body-parser": "^1.17.1",
+    "isomorphic-fetch": "^2.2.1"
+  }
+}

@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Request all the things</title>
+</head>
+<body>
+
+	<h1>Request all the things!</h1>
+
+	<h2>Request from the client</h2>
+
+	<h3>Call an API that has CORS enabled</h3>
+	<button onclick="makeRequest('cors');">Request</button>
+
+	<h3>Call an API that has CORS disabled</h3>
+	<button onclick="makeRequest('no-cors');">Request</button>
+	<button onclick="makeRequest('jsonp');">JSONP Request</button>
+
+	<h2>Request from the server</h2>
+
+	<h3>Call an API that has CORS enabled</h3>
+	<button onclick="serverRequest('cors');">Request</button>
+
+	<h3>Call an API that has CORS disabled</h3>
+	<button onclick="serverRequest('no-cors');">Request</button>
+	<button onclick="serverRequest('jsonp');">JSONP Request</button>
+
+	<script
+	  src="https://code.jquery.com/jquery-3.1.1.js"
+	  integrity="sha256-16cdPddA6VdVInumRGo6IbivbERE8p7CQR3HzTBuELA="
+	  crossorigin="anonymous"></script>
+
+	<script type="text/javascript">
+
+	// Makes a native js HTTP request using XMLHttpRequest
+	var native = function (url) {
+		var xmlHttp = new XMLHttpRequest();
+		xmlHttp.onreadystatechange = function() {
+			if (xmlHttp.readyState == 4) {
+				if (xmlHttp.status == 200) {
+					console.log('Using XMLHttpRequest (no support for jsonp)', JSON.parse(xmlHttp.response));
+				}
+				else {
+					console.warn('Using XMLHttpRequest (no support for jsonp) FAILED');
+				}
+			}
+		}
+		xmlHttp.open("GET", url, true);
+		xmlHttp.send(null);
+	}
+
+	// Makes a request with the new fetch api
+	var withFetch = function (url) {
+		fetch(url, {
+			method: 'get',
+			mode: 'cors'
+		}).then(function(response) {
+			return response.json();
+		}).then(function (body) {
+			console.log('Using fetch API', body)
+		}).catch(function(err) {
+			console.warn('Using fetch API FAILED')
+		});
+	}
+
+	// Makes a request using jQuery
+	var withjQuery = function (url) {
+		$.getJSON(url, function(json) {
+			console.log('Using jQuery getJSON (uses jsonp if needed)', json);
+		}).catch(function (err){
+			console.warn('Using jQuery getJSON (uses jsonp if needed) FAILED');
+		}) ;
+	}
+
+	var makeRequest = function (type) {
+
+		var url;
+
+		switch (type) {
+			case 'cors':
+				url = 'http://localhost:9999/with-cors-enabled';
+				break;
+			case 'no-cors':
+				url = 'http://localhost:9999/with-cors-disabled';
+				break;
+			case 'jsonp':
+				url = 'http://localhost:9999/with-cors-disabled/?callback=?';
+				break;
+			default:
+				break;
+		}
+
+		console.log('\nMAKE REQUEST', type, url)
+		native(url);
+		withFetch(url);
+		withjQuery(url);
+	}
+
+
+	// Not making the API call yet,
+	// just asking our server to do it
+	var serverRequest = function (type) {
+		fetch('doItFromTheServer/', {
+			method: 'POST',
+			body: JSON.stringify( {type: type} ),
+			headers: {
+				'Accept': 'application/json',
+				'Content-Type': 'application/json'
+			}
+		}).then(function (response) {
+			return response.json();
+		}).then(function (body) {
+			console.log('From the server', type, body);
+		}).catch(function(err) {
+			console.warn('From the server FAILED', type);
+		});
+	}
+	</script>
+
+</body>
+</html>
