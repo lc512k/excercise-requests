@@ -1,6 +1,13 @@
 const express = require('express');
 const app = express();
 
+// Serve your static files locally
+// Both cors and no cors requests will work
+app.set('view engine', 'jade');
+app.get('/', function(req, res) {
+    res.sendfile('index.html', {root: __dirname })
+});
+
 // Set tell the browser you are sending JSON on all endpoints
 app.use(function (req, res, next) {
 	res.setHeader('Content-Type', 'application/json');

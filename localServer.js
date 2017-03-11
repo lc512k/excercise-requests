@@ -12,6 +12,7 @@ app.get('/', function(req, res) {
 // parse JSON POST bodies
 app.use(bodyParser());
 
+// Call the different remote server endpoints
 app.post('/doItFromTheServer', function (req,res) {
 
 	type = req.body.type;

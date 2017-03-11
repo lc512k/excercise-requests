@@ -65,3 +65,9 @@ The server is contained in `remoteServer.js`. This file contains all the API end
 - `/with-cors-disabled/?callback=?`
 	- `fetch`: FAILURE (JSONP makes sense only for the client)
 
+## Run both client and server on the same domain
+
+`remoteServer.js` is also capable of running your site. This is useful to test all the options above when there's no cross-origin issue, as both apps will be running on the same domain (i.e. same port).
+
+To test this, navigate to http://localhost:9999
+
