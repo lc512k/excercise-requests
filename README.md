@@ -9,7 +9,7 @@ By following the instructions below you will run a site that calls API endpoints
 Before you start, please run `npm install` to download all your dependencies
 
 ## Run
-Run your clientside site by doing:
+Run your site by doing:
 `node localServer.js`
 
 Run your serverside app (API endpoints) by doing:
