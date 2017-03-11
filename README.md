@@ -2,7 +2,7 @@
 
 This project illustrates different ways to make API requests.
 
-By following the instructions below you will run a site who calls API endpoints on a remote server in different ways.
+By following the instructions below you will run a site that calls API endpoints on a remote server in a few different ways.
 
 
 ## Install
